@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -30,7 +31,7 @@ public class CoffeeShops {
     @Column(name = "response")
     private String response;
 
-    @NonNull
+    @NotNull
     @Column(name = "rating")
     private Integer rating;
 
