@@ -1,0 +1,48 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.2'
+	id 'io.spring.dependency-management' version '1.0.12.RELEASE'
+	id 'java'
+}
+
+group = 'com.gradle'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.liquibase:liquibase-core'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'org.postgresql:postgresql'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.5.2.Final'
+	annotationProcessor "org.mapstruct:mapstruct-processor:1.5.2.Final"
+	annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0"
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation ("org.springframework.boot:spring-boot-starter-test") {
+		exclude group: 'org.mockito', module: 'mockito-core'
+	}
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+	testImplementation group: 'org.mockito', name: 'mockito-inline', version: '4.6.1'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+
+	testImplementation ("org.springframework.boot:spring-boot-starter-test") {
+		exclude group: 'org.mockito', module: 'mockito-core'
+	}
+	implementation group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '8.12.52'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
