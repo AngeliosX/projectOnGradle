@@ -38,6 +38,7 @@ public class CoffeeShops {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @Valid
     @Column(name = "email")
     private String email;
 
