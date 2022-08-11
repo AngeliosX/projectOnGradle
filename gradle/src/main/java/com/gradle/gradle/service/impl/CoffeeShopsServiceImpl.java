@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import static com.gradle.gradle.config.DataConfig.url;
 
 @Service
+// не хватает обработки если не нашли кофе шоп
 public class CoffeeShopsServiceImpl implements CoffeeShopsService {
 
     private final CoffeeShopsRepository coffeeShopsRepository;
@@ -28,24 +29,11 @@ public class CoffeeShopsServiceImpl implements CoffeeShopsService {
     private final CoffeeShopsMapperMap coffeeShopsMapperMap;
     private static final Logger log = LoggerFactory.getLogger(CoffeeShopsServiceImpl.class);
 
-    private static Connection connection;
-    private final DataConfig dataConfig;
-
     public CoffeeShopsServiceImpl(DataConfig dataConfig, CoffeeShopsRepository coffeeShopsRepository, CoffeeShopsMapperMap coffeeShopsMapperMap) {
         this.dataConfig = dataConfig;
         this.coffeeShopsRepository = coffeeShopsRepository;
         this.coffeeShopsMapperMap = coffeeShopsMapperMap;
     }
-
-    @PostConstruct
-    public void initialize() {
-        try {
-            connection = DriverManager.getConnection(url, DataConfig.getConnectionProps());
-        } catch (SQLException e) {
-            log.debug("Incorrect database URL '{}' or connection props '{}'", url, DataConfig.getConnectionProps());
-        }
-    }
-
 
     @Override
     public CoffeeShops getResponseFromShops(String response) {
