@@ -1,4 +1,4 @@
-package com.gradle.gradle.dao;
+package com.gradle.gradle.repository;
 
 import com.gradle.gradle.entity.CoffeeShops;
 import org.springframework.data.jpa.repository.JpaRepository;

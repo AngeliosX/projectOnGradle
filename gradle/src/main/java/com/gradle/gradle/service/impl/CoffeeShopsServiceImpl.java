@@ -1,7 +1,7 @@
 package com.gradle.gradle.service.impl;
 
 import com.google.i18n.phonenumbers.NumberParseException;
-import com.gradle.gradle.dao.CoffeeShopsRepository;
+import com.gradle.gradle.repository.CoffeeShopsRepository;
 import com.gradle.gradle.dto.in.CoffeeShopsInDTO;
 import com.gradle.gradle.entity.CoffeeShops;
 import com.gradle.gradle.exceptions.CoffeeShopsNotFoundException;
