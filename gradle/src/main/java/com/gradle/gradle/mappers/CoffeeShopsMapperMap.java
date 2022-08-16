@@ -16,6 +16,11 @@ public abstract class CoffeeShopsMapperMap {
     public abstract CoffeeShopsOutDTO coffeeShopsEntityToCoffeeShopsOutDTO(CoffeeShops coffeeShops);
 
 
+    @Mapping(target = "response", ignore = true)
+    @Mapping(target = "rating", ignore = true)
+    @Mapping(target = "description", ignore = true)
+    @Mapping(target = "creationDate", ignore = true)
+    @Mapping(target = "coffeeShopsEmployeesList", ignore = true)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "phoneNumber",
             expression = "java(com.gradle.gradle.util.UtilForPhoneNumber" +

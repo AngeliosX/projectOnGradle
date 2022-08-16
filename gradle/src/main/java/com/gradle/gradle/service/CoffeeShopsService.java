@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 public interface CoffeeShopsService {
 
-    String getCoffeeShopsByEstablishment(String establishment) throws CoffeeShopsNotFoundException;
+    CoffeeShops getCoffeeShopsByEstablishment(String establishment) throws CoffeeShopsNotFoundException;
 
     CoffeeShops getResponseFromCoffeeShops(String establishment, String response);
     CoffeeShops getDescriptionFromCoffeeShops(String establishment, String description);

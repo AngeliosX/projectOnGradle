@@ -27,12 +27,12 @@ public class CoffeeShopsServiceImpl implements CoffeeShopsService {
     }
 
     @Override
-    public String getCoffeeShopsByEstablishment(String establishment) throws CoffeeShopsNotFoundException {
+    public CoffeeShops getCoffeeShopsByEstablishment(String establishment) throws CoffeeShopsNotFoundException {
         CoffeeShops coffeeShops = coffeeShopsRepository.getEstablishmentFromCoffeeShops(establishment);
         if (coffeeShops == null) {
             throw new CoffeeShopsNotFoundException();
         } else {
-            return String.valueOf(coffeeShops);
+            return coffeeShops;
         }
     }
 
@@ -68,7 +68,7 @@ public class CoffeeShopsServiceImpl implements CoffeeShopsService {
         if (creationDate == null || LocalDate.now().isBefore(creationDate)) {
             throw new FoundationDateIsExpiredException(establishment, creationDate);
         }
-        CoffeeShops shops = new CoffeeShops();
+        CoffeeShops shops = new CoffeeShops(6L, "testShop6", "", "very well", 5, "+79998887766", "mail1@gmail.com", LocalDate.EPOCH);
         shops.setEstablishment(establishment);
         shops.setCreationDate(creationDate);
         return addCoffeeShops(shops);

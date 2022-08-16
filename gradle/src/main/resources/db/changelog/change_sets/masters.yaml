@@ -23,3 +23,15 @@ databaseChangeLog:
         changes:
           - sqlFile:
               path: \db\changelog\change_sets\insert_values_into_coffee_shops.sql
+  - changeSet:
+        id: 5
+        author: x
+        changes:
+          - sqlFile:
+              path: \db\changelog\change_sets\create_coffee_shops_employees.sql
+  - changeSet:
+        id: 6
+        author: x
+        changes:
+          - sqlFile:
+              path: \db\changelog\change_sets\insert_values_into_coffee_shops_employees.sql
