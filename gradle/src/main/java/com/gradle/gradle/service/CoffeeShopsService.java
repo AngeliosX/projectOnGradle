@@ -6,16 +6,19 @@ import com.gradle.gradle.entity.CoffeeShops;
 import com.gradle.gradle.exceptions.CoffeeShopsNotFoundException;
 import com.gradle.gradle.exceptions.FoundationDateIsExpiredException;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 
 public interface CoffeeShopsService {
 
-    CoffeeShops getResponseFromShops(String response);
-    CoffeeShops getDescriptionFromShops(String description);
-    CoffeeShops getRatingFromShops(String rating);
+    String getCoffeeShopsByEstablishment(String establishment) throws CoffeeShopsNotFoundException;
 
-    CoffeeShops createShop(CoffeeShopsInDTO coffeeShop) throws NumberParseException, FoundationDateIsExpiredException;
+    CoffeeShops getResponseFromCoffeeShops(String establishment, String response);
+    CoffeeShops getDescriptionFromCoffeeShops(String establishment, String description);
+    CoffeeShops getRatingFromCoffeeShops(String establishment,Integer rating);
 
-    long createShopByNameAndDate(String name, LocalDate creation_date) throws FoundationDateIsExpiredException;
+    CoffeeShops createShop(@Valid CoffeeShopsInDTO coffeeShop) throws NumberParseException, FoundationDateIsExpiredException;
+
+    CoffeeShops createShopByNameAndDate(String name, LocalDate creation_date) throws FoundationDateIsExpiredException;
     LocalDate getCreationDate(Long id) throws CoffeeShopsNotFoundException;
 }

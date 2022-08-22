@@ -1,9 +1,9 @@
 package com.gradle.gradle.exceptions;
 
 public class CoffeeShopsNotFoundException extends Exception {
-    private final Long establishmentId;
+    private Long establishmentId;
 
-    public CoffeeShopsNotFoundException(Long establishmentId) {
+    public CoffeeShopsNotFoundException() {
         this.establishmentId = establishmentId;
     }
 

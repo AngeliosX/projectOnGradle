@@ -1,11 +1,14 @@
 package com.gradle.gradle.service;
 
 import com.gradle.gradle.AppContextTest;
-import org.junit.jupiter.api.AfterAll;
+import com.gradle.gradle.entity.CoffeeShops;
+import com.gradle.gradle.exceptions.FoundationDateIsExpiredException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,45 +16,33 @@ public class CoffeeShopsServiceTest {
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     static
     class ResponseServiceTest extends AppContextTest {
-        private Long shopsWithResponse;
-        private Long shopsWithDescription;
-
-        private Long shopsWithoutResponse;
-        private Long shopsWithoutDescription;
 
         @Autowired
         CoffeeShopsService coffeeShopsService;
 
 
         @BeforeAll
-        void response() {
-            String SHOPS_WITH_RESPONSE = "shop1";
-            shopsWithResponse = coffeeShopsService.getResponseFromShops(SHOPS_WITH_RESPONSE).getId();
-            String SHOPS_WITHOUT_RESPONSE = "shop2";
-            shopsWithoutResponse = coffeeShopsService.getResponseFromShops(SHOPS_WITHOUT_RESPONSE).getId();
-        }
-
-        @AfterAll
-        void description() {
-            String SHOPS_WITH_DESCRIPTION = "shop3";
-            shopsWithDescription = coffeeShopsService.getResponseFromShops(SHOPS_WITH_DESCRIPTION).getId();
-            String SHOPS_WITHOUT_DESCRIPTION = "shop4";
-            shopsWithoutDescription = coffeeShopsService.getResponseFromShops(SHOPS_WITHOUT_DESCRIPTION).getId();
-        }
-
-
-        @Test
-        void getResponseFromShops(String response) {
-            coffeeShopsService.getResponseFromShops(response);
-            assertEquals(1, shopsWithResponse);
-            assertEquals(2, shopsWithoutResponse);
+        void ShopsWithoutResponse() throws FoundationDateIsExpiredException {
+            CoffeeShops coffeeShops = new CoffeeShops(6L, "testShop6",
+                    "", "very well", 5,
+                    "+79998887766", "mail1@gmail.com", LocalDate.EPOCH);
+            coffeeShopsService.createShopByNameAndDate(String.valueOf(coffeeShops),LocalDate.now());
         }
 
         @Test
-        void getDescriptionFromShops(String description) {
-            coffeeShopsService.getDescriptionFromShops(description);
-            assertEquals(3, shopsWithDescription);
-            assertEquals(4, shopsWithoutDescription);
+        void getResponseFromShops() {
+            String establishment = "tesShop1";
+            String response = "not bad";
+            CoffeeShops testResponse = coffeeShopsService.getResponseFromCoffeeShops(establishment, response);
+            assertEquals(response, testResponse);
+        }
+
+        @Test
+        void getDescriptionFromShops() {
+            String establishment = "tesShop2";
+            String description = "description for tstShop1";
+            CoffeeShops testDescription = coffeeShopsService.getDescriptionFromCoffeeShops(establishment, description);
+            assertEquals(description, testDescription);
         }
     }
 }

@@ -11,9 +11,6 @@ public interface CoffeeShopsMapper {
 
     @Mappings({
             @Mapping(source = "establishment", target = "establishment"),
-            @Mapping(source = "creationDate", target = "creationDate"),
-            @Mapping(target = "description", source = "description"),
-            @Mapping(target = "rating", source = "rating"),
             @Mapping(target = "response", source = "response")
     })
     CoffeeShopsOutDTO responseEntityToResponseDTO(CoffeeShops coffeeShops);

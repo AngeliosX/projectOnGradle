@@ -7,10 +7,7 @@ import com.gradle.gradle.entity.CoffeeShops;
 import com.gradle.gradle.exceptions.FoundationDateIsExpiredException;
 import com.gradle.gradle.mappers.CoffeeShopsMapperMap;
 import com.gradle.gradle.service.CoffeeShopsService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -25,19 +22,19 @@ public class CoffeeShopsController {
     }
 
     @GetMapping("/response")
-    public CoffeeShops getResponseFromShops(String response) {
-        return coffeeShopsService.getResponseFromShops(response);
+    public CoffeeShops getResponseFromCoffeeShops(@PathVariable String establishment, @PathVariable String response) {
+        return coffeeShopsService.getResponseFromCoffeeShops(establishment, response);
     }
 
 
     @GetMapping("/description")
-    public CoffeeShops getDescriptionFromShops(String description) {
-        return coffeeShopsService.getDescriptionFromShops(description);
+    public CoffeeShops getDescriptionFromCoffeeShops(@PathVariable String establishment, @PathVariable String description) {
+        return coffeeShopsService.getDescriptionFromCoffeeShops(establishment, description);
     }
 
     @GetMapping("/rating")
-    public CoffeeShops getRatingFromShops(String rating) {
-        return coffeeShopsService.getRatingFromShops(rating);
+    public CoffeeShops getRatingFromShops(@PathVariable String establishment, @PathVariable Integer rating) {
+        return coffeeShopsService.getRatingFromCoffeeShops(establishment, rating);
     }
 
     @PostMapping("/shop")
