@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -45,6 +46,24 @@ public class CoffeeShops {
 
     @Column(name = "creation_date")
     private LocalDate creationDate;
+
+    @OneToMany(mappedBy= "id"
+            , cascade = CascadeType.REFRESH
+            , fetch = FetchType.LAZY)
+    private List<CoffeeShopsEmployees> coffeeShopsEmployeesList;
+
+
+
+    public CoffeeShops(Long id, String establishment, String description, String response, Integer rating, String phoneNumber, String email, LocalDate creationDate) {
+        this.id = id;
+        this.establishment = establishment;
+        this.description = description;
+        this.response = response;
+        this.rating = rating;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.creationDate = creationDate;
+    }
 }
 
 
