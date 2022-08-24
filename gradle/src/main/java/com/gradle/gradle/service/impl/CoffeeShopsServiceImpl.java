@@ -1,13 +1,15 @@
 package com.gradle.gradle.service.impl;
 
 import com.google.i18n.phonenumbers.NumberParseException;
-import com.gradle.gradle.repository.CoffeeShopsRepository;
 import com.gradle.gradle.dto.in.CoffeeShopsInDTO;
 import com.gradle.gradle.entity.CoffeeShops;
 import com.gradle.gradle.exceptions.CoffeeShopsNotFoundException;
 import com.gradle.gradle.exceptions.FoundationDateIsExpiredException;
 import com.gradle.gradle.mappers.CoffeeShopsMapperMap;
+import com.gradle.gradle.repository.CoffeeShopsRepository;
 import com.gradle.gradle.service.CoffeeShopsService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
@@ -27,6 +29,11 @@ public class CoffeeShopsServiceImpl implements CoffeeShopsService {
     }
 
     @Override
+    public Page<CoffeeShops> getAllCoffeeShops(Pageable pageable) {
+
+        return coffeeShopsRepository.findAll(pageable);
+    }
+    @Override
     public CoffeeShops getCoffeeShopsByEstablishment(String establishment) throws CoffeeShopsNotFoundException {
         CoffeeShops coffeeShops = coffeeShopsRepository.getEstablishmentFromCoffeeShops(establishment);
         if (coffeeShops == null) {
@@ -37,22 +44,16 @@ public class CoffeeShopsServiceImpl implements CoffeeShopsService {
     }
 
     @Override
-    public CoffeeShops getResponseFromCoffeeShops(String establishment, String response) {
-        CoffeeShops coffeeShops = coffeeShopsRepository.getEstablishmentFromCoffeeShops(establishment);
-        return coffeeShopsRepository.getResponseFromCoffeeShops(coffeeShops.getResponse());
+    public void updateDescriptionCoffeeShopsByEstablishment(String establishment, String description) throws CoffeeShopsNotFoundException {
+        CoffeeShops coffeeShops = coffeeShopsRepository.findFirstByEstablishment(establishment);
+        if (coffeeShops == null) {
+            throw new CoffeeShopsNotFoundException();
+        } else {
+            coffeeShops.setDescription(description);
+            coffeeShopsRepository.save(coffeeShops);
+        }
     }
 
-    @Override
-    public CoffeeShops getDescriptionFromCoffeeShops(String establishment, String description) {
-        CoffeeShops coffeeShops = coffeeShopsRepository.getEstablishmentFromCoffeeShops(establishment);
-        return coffeeShopsRepository.getDescriptionFromCoffeeShops(coffeeShops.getDescription());
-    }
-
-    @Override
-    public CoffeeShops getRatingFromCoffeeShops(String establishment, Integer rating) {
-        CoffeeShops coffeeShops = coffeeShopsRepository.getEstablishmentFromCoffeeShops(establishment);
-        return coffeeShopsRepository.getRatingFromCoffeeShops(coffeeShops.getRating());
-    }
 
     @Override
     public CoffeeShops createShop(@Valid CoffeeShopsInDTO coffeeShop) throws NumberParseException, FoundationDateIsExpiredException {

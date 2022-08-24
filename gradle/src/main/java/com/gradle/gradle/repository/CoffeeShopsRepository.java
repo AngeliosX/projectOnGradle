@@ -17,4 +17,6 @@ public interface CoffeeShopsRepository extends JpaRepository<CoffeeShops, Long> 
 
     @Query(value = "select establishment, rating  from coffee_shop where rating = :rating", nativeQuery = true)
     CoffeeShops getRatingFromCoffeeShops(@Param("rating") Integer rating);
+
+    CoffeeShops findFirstByEstablishment(String establishment);
 }

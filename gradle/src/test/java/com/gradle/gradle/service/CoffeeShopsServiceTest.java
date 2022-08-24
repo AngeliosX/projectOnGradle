@@ -35,23 +35,6 @@ public class CoffeeShopsServiceTest {
         }
 //
 //        @Test
-//        void getResponseFromShops() {
-//            String establishment = "tesShop1";
-//            String response = "not bad";
-//            CoffeeShops testResponse = coffeeShopsService.getResponseFromCoffeeShops(establishment, response);
-//            assertEquals(response, testResponse);
-//        }
-//
-//        @Test
-//        void getDescriptionFromShops() {
-//            String establishment = "tesShop2";
-//            String description = "description for tstShop1";
-//            CoffeeShops testDescription = coffeeShopsService.getDescriptionFromCoffeeShops(establishment, description);
-//            assertEquals(description, testDescription);
-//        }
-//
-//
-//        @Test
 //        @Transactional
 //        void testTransactional(String  establishment) throws CoffeeShopsNotFoundException {
 //            CoffeeShops coffeeShops = coffeeShopsService.getCoffeeShopsByEstablishment(establishment);
