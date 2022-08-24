@@ -47,7 +47,7 @@ public class CoffeeShops {
     @Column(name = "creation_date")
     private LocalDate creationDate;
 
-    @OneToMany(mappedBy= "establishment"
+    @OneToMany(mappedBy= "id"
             , cascade = CascadeType.REFRESH
             , fetch = FetchType.LAZY)
     private List<CoffeeShopsEmployees> coffeeShopsEmployeesList;
