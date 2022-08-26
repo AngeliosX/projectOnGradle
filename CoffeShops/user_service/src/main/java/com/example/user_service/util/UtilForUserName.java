@@ -7,7 +7,6 @@ public class UtilForUserName {
         }
     }
 
-
     public static boolean checkUserName(String userName) {
         try {
             userName(userName);

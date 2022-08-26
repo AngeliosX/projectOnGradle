@@ -14,7 +14,7 @@ public class NameUserNotEmptyValidator implements ConstraintValidator<NameUserNo
 
     @Override
     public boolean isValid(String userName, ConstraintValidatorContext cxt) {
-        if(userName != null) {
+        if (userName != null) {
             return UtilForUserName.checkUserName(userName);
         }
         return false;
