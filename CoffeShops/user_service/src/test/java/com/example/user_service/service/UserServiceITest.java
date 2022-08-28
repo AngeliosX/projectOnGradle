@@ -9,7 +9,7 @@ import com.example.user_service.service.impl.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UserServiceITest extends UserServiceApplicationTests {
 

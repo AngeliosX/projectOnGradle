@@ -35,3 +35,9 @@ databaseChangeLog:
 #     changes:
 #        - sqlFile:
 #            path: \db\changelog\change_sets\insert_into_links_values.sql
+  - changeSet:
+      id: 7
+      author: x
+      changes:
+        - sqlFile:
+            path: \db\changelog\change_sets\add_user_pass.sql

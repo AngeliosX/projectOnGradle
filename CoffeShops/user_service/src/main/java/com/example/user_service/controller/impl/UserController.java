@@ -1,8 +1,10 @@
 package com.example.user_service.controller.impl;
 
 import com.example.user_service.controller.UserControllerI;
+import com.example.user_service.dto.in.ChangePasswordUserInDTO;
 import com.example.user_service.dto.in.UserInDTO;
 import com.example.user_service.dto.out.UserOutDTO;
+import com.example.user_service.exceptions.RoleNotFoundException;
 import com.example.user_service.exceptions.UserNotFoundException;
 import com.example.user_service.service.impl.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,5 +41,21 @@ public class UserController implements UserControllerI {
     public UserOutDTO getUser(Long id) throws UserNotFoundException {
 
         return userService.getUser(id);
+    }
+
+    @Override
+    public void changePassword(ChangePasswordUserInDTO changePasswordUserInDTO) {
+        userService.changePassword(changePasswordUserInDTO);
+    }
+
+    @Override
+    public UserOutDTO addRoleToUser(UserInDTO userInDTO) throws RoleNotFoundException {
+        return userService.addRoleToUser(userInDTO);
+    }
+
+    @Override
+    public UserOutDTO removeRoleFromUser(Long userId, UserInDTO userInDTO)
+            throws UserNotFoundException {
+        return userService.removeRoleFromUser(userId, userInDTO);
     }
 }

@@ -5,8 +5,8 @@ import com.example.user_service.validator.annotation.NameUserNotEmpty;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -26,6 +26,7 @@ public class User {
 
     @NameUserNotEmpty
     @Column(name = "name")
+    @Size(min = 6, message = "at least 6 characters")
     private String name;
 
     @Column(name = "surname")
@@ -41,6 +42,17 @@ public class User {
     @Column(name = "registration_date")
     private LocalDateTime registrationDate;
 
+    @Column(name = "password")
+    @Size(min = 5, message = "it isn't less than 5 signs, including special symbols %#&*@")
+    private String password;
+
+    @PrePersist
+    public void saveDefaultPass() {
+        if (password == null) {
+            password = "Flag123@";
+        }
+    }
+
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
@@ -48,7 +60,7 @@ public class User {
             joinColumns = {@JoinColumn(name = "id_user", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "id_roles", referencedColumnName = "id")}
     )
-    final Set<Roles> rolesSet = new HashSet<>();
+    Set<Roles> rolesSet;
 
     @Override
     public boolean equals(Object o) {
@@ -62,4 +74,6 @@ public class User {
     public int hashCode() {
         return 69;
     }
+
+
 }
