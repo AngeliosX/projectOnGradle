@@ -31,4 +31,6 @@ public abstract class CoffeeShopsMapperMap {
     CoffeeShopsOutDTO reviewEntityToReviewOutDTO(CoffeeShops coffeeShops) {
         return coffeeShopsMapper.responseEntityToResponseDTO(coffeeShops);
     }
+
+
 }

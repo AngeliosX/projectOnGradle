@@ -17,14 +17,12 @@ public class CoffeeShopsEmployees {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="shops", nullable=false)
-    private CoffeeShops coffeeShops;
-    
-
     @Column(name = "employee")
     private String employee;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="shops", nullable=false)
+    private CoffeeShops coffeeShops;
 
 
 }

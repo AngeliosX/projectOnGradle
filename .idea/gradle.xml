@@ -10,6 +10,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/CoffeShops" />
+            <option value="$PROJECT_DIR$/CoffeShops/coffee_shops_service" />
+            <option value="$PROJECT_DIR$/CoffeShops/user_service" />
           </set>
         </option>
       </GradleProjectSettings>

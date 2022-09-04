@@ -54,7 +54,7 @@ public class User {
     }
 
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "links_users_roles",
             joinColumns = {@JoinColumn(name = "id_user", referencedColumnName = "id")},
