@@ -1,6 +1,7 @@
 package com.gradle.gradle.mappers;
 
 import com.google.i18n.phonenumbers.NumberParseException;
+import com.gradle.gradle.controller.CoffeeShopsController;
 import com.gradle.gradle.dto.in.CoffeeShopsInDTO;
 import com.gradle.gradle.dto.out.CoffeeShopsOutDTO;
 import com.gradle.gradle.entity.CoffeeShops;
@@ -33,4 +34,8 @@ public abstract class CoffeeShopsMapperMap {
     }
 
 
+    public CoffeeShopsController coffeeShopsToCoffeeShopsOutDTO(CoffeeShopsController coffeeShopsController) {
+
+        return coffeeShopsController;
+    }
 }

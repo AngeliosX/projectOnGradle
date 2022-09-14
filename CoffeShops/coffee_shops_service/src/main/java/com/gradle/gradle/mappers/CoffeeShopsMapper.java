@@ -1,6 +1,7 @@
 package com.gradle.gradle.mappers;
 
 import com.gradle.gradle.dto.in.UpdateEmployeeInDTO;
+import com.gradle.gradle.dto.out.AverageRatingCoffeeShopsOutDTO;
 import com.gradle.gradle.dto.out.CoffeeShopsOutDTO;
 import com.gradle.gradle.dto.in.DeleteEmployeeInDTO;
 import com.gradle.gradle.entity.CoffeeShops;
@@ -20,4 +21,6 @@ public interface CoffeeShopsMapper {
             @Mapping(target = "response", source = "response")
     })
     CoffeeShopsOutDTO responseEntityToResponseDTO(CoffeeShops coffeeShops);
+
+    AverageRatingCoffeeShopsOutDTO coffeeShopsToCoffeeShopsOutDTO(CoffeeShops coffeeShops);
 }

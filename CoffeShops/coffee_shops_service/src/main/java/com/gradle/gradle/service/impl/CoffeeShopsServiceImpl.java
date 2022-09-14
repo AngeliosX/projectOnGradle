@@ -1,6 +1,7 @@
 package com.gradle.gradle.service.impl;
 
 import com.google.i18n.phonenumbers.NumberParseException;
+import com.gradle.gradle.controller.CoffeeShopsController;
 import com.gradle.gradle.dto.in.CoffeeShopsInDTO;
 import com.gradle.gradle.entity.CoffeeShops;
 import com.gradle.gradle.exceptions.CoffeeShopsNotFoundException;
@@ -11,6 +12,7 @@ import com.gradle.gradle.service.CoffeeShopsService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -73,13 +75,19 @@ public class CoffeeShopsServiceImpl implements CoffeeShopsService {
         shops.setCreationDate(creationDate);
     }
 
-    private CoffeeShops addCoffeeShops(CoffeeShops shops) {
-        return shops;
-    }
+
 
     @Override
     public LocalDate getCreationDate(Long id) {
         CoffeeShops shopsId = coffeeShopsRepository.getReferenceById(id);
         return shopsId.getCreationDate();
     }
+
+
+//    @Override
+//    @Transactional
+//    public Page<CoffeeShopsController> getAverageList(Pageable pageable) {
+//        Page<CoffeeShopsController> coffeeShopsPage = coffeeShopsRepository.averageRatingOfCoffeeShop(pageable);
+//        return coffeeShopsPage.map(coffeeShopsMapperMap::coffeeShopsToCoffeeShopsOutDTO);
+//    }
 }

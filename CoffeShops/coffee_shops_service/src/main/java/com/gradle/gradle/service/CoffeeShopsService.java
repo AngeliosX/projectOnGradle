@@ -1,6 +1,7 @@
 package com.gradle.gradle.service;
 
 import com.google.i18n.phonenumbers.NumberParseException;
+import com.gradle.gradle.controller.CoffeeShopsController;
 import com.gradle.gradle.dto.in.CoffeeShopsInDTO;
 import com.gradle.gradle.entity.CoffeeShops;
 import com.gradle.gradle.exceptions.CoffeeShopsNotFoundException;
@@ -23,4 +24,6 @@ public interface CoffeeShopsService {
 
     void createShopByNameAndDate(String name, LocalDate creation_date) throws FoundationDateIsExpiredException;
     LocalDate getCreationDate(Long id) throws CoffeeShopsNotFoundException;
+
+//    Page<CoffeeShopsController> getAverageList(Pageable pageable);
 }
