@@ -2,15 +2,20 @@ package com.example.user_service.controller;
 
 import com.example.user_service.entity.Roles;
 import com.example.user_service.exceptions.RoleNotFoundException;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "role", description = "API of the roles")
+@RequestMapping("/roles")
 public interface RolesControllerI {
-    @PostMapping("/create")
+
+    @Operation(summary = "Create the new role")
+    @PostMapping
     Roles createRole(@RequestBody Roles roles);
 
-    @DeleteMapping("/delete/{id}")
+
+    @Operation(summary = "Delete the role by id")
+    @DeleteMapping("/{id}")
     Long deleteRoleById(@PathVariable Long id) throws RoleNotFoundException;
 }

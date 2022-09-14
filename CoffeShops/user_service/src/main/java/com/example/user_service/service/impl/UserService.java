@@ -3,7 +3,6 @@ package com.example.user_service.service.impl;
 import com.example.user_service.dto.in.ChangePasswordUserInDTO;
 import com.example.user_service.dto.in.UserInDTO;
 import com.example.user_service.dto.out.UserOutDTO;
-import com.example.user_service.entity.Roles;
 import com.example.user_service.entity.User;
 import com.example.user_service.exceptions.RoleNotFoundException;
 import com.example.user_service.exceptions.UserNotFoundException;
@@ -48,6 +47,8 @@ public class UserService implements UserServiceI {
         }
         User user = userMapper.userInDTOToUser(userInDTO);
         user.setId(id);
+        user.setEmail(user.getEmail());
+        user.setRolesSet(user.getRolesSet());
         User saveUser = userRepository.save(user);
         return userMapper.userToUserOutDTO(saveUser);
     }

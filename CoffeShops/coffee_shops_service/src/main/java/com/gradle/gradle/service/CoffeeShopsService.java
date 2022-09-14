@@ -21,6 +21,6 @@ public interface CoffeeShopsService {
 
     CoffeeShops createShop(@Valid CoffeeShopsInDTO coffeeShop) throws NumberParseException, FoundationDateIsExpiredException;
 
-    CoffeeShops createShopByNameAndDate(String name, LocalDate creation_date) throws FoundationDateIsExpiredException;
+    void createShopByNameAndDate(String name, LocalDate creation_date) throws FoundationDateIsExpiredException;
     LocalDate getCreationDate(Long id) throws CoffeeShopsNotFoundException;
 }

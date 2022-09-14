@@ -10,11 +10,17 @@ import com.example.user_service.exceptions.RoleNotFoundException;
 import com.example.user_service.exceptions.UserNotFoundException;
 import com.example.user_service.service.impl.UserService;
 import org.springframework.amqp.rabbit.core.RabbitMessageOperations;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
-@RequestMapping("/user")
 public class UserController implements UserControllerI {
     private final UserService userService;
     private final RabbitMessageOperations rabbitTemplate;
@@ -32,7 +38,6 @@ public class UserController implements UserControllerI {
 
     @Override
     public UserOutDTO updateUser(UserInDTO userInDTO, Long id) throws UserNotFoundException {
-        Long updateUser = userService.update(userInDTO, id).getId();
         rabbitTemplate.convertAndSend("myQueue", new UpdateEmployeeIdInCoffeeShopsOutDTO(id));
         return userService.update(userInDTO, id);
     }
@@ -47,7 +52,7 @@ public class UserController implements UserControllerI {
 
     @Override
     public UserOutDTO getUser(Long id) throws UserNotFoundException {
-        String myQueue = rabbitTemplate.convertSendAndReceive("myQueue", "Hello, world!", String.class);
+        rabbitTemplate.convertSendAndReceive("myQueue", "Hello, world!", String.class);
         return userService.getUser(id);
     }
 
@@ -65,5 +70,17 @@ public class UserController implements UserControllerI {
     public UserOutDTO removeRoleFromUser(Long userId, UserInDTO userInDTO)
             throws UserNotFoundException {
         return userService.removeRoleFromUser(userId, userInDTO);
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleArgumentFormatException(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
 }

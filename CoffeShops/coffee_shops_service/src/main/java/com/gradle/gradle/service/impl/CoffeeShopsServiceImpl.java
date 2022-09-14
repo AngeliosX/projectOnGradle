@@ -30,7 +30,6 @@ public class CoffeeShopsServiceImpl implements CoffeeShopsService {
 
     @Override
     public Page<CoffeeShops> getAllCoffeeShops(Pageable pageable) {
-
         return coffeeShopsRepository.findAll(pageable);
     }
     @Override
@@ -65,14 +64,13 @@ public class CoffeeShopsServiceImpl implements CoffeeShopsService {
     }
 
     @Override
-    public CoffeeShops createShopByNameAndDate(String establishment, LocalDate creationDate) throws FoundationDateIsExpiredException {
+    public void createShopByNameAndDate(String establishment, LocalDate creationDate) throws FoundationDateIsExpiredException {
         if (creationDate == null || LocalDate.now().isBefore(creationDate)) {
             throw new FoundationDateIsExpiredException(establishment, creationDate);
         }
         CoffeeShops shops = new CoffeeShops(6L, "testShop6", "", "very well", 5, "+79998887766", "mail1@gmail.com", LocalDate.EPOCH);
         shops.setEstablishment(establishment);
         shops.setCreationDate(creationDate);
-        return addCoffeeShops(shops);
     }
 
     private CoffeeShops addCoffeeShops(CoffeeShops shops) {

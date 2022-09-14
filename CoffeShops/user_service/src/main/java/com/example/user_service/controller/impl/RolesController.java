@@ -4,11 +4,9 @@ import com.example.user_service.controller.RolesControllerI;
 import com.example.user_service.entity.Roles;
 import com.example.user_service.exceptions.RoleNotFoundException;
 import com.example.user_service.service.RolesServiceI;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/roles")
 public class RolesController implements RolesControllerI {
     private final RolesServiceI rolesService;
 
