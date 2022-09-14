@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: x
+      changes:
+        - sqlFile:
+            path: \db\changelog\change_sets\users.sql
+#  - changeSet:
+#      id: 2
+#      author: x
+#      changes:
+#        - sqlFile:
+#            path: \db\changelog\change_sets\insert_into_users_values.sql
+  - changeSet:
+      id: 3
+      author: x
+      changes:
+        - sqlFile:
+            path: \db\changelog\change_sets\roles.sql
+#  - changeSet:
+#      id: 4
+#      author: x
+#      changes:
+#        - sqlFile:
+#            path: \db\changelog\change_sets\insert_into_roles_values.sql
+  - changeSet:
+      id: 5
+      author: x
+      changes:
+        - sqlFile:
+            path: \db\changelog\change_sets\links_users_roles.sql
+#  - changeSet:
+#     id: 6
+#     author: x
+#     changes:
+#        - sqlFile:
+#            path: \db\changelog\change_sets\insert_into_links_values.sql
+  - changeSet:
+      id: 7
+      author: x
+      changes:
+        - sqlFile:
+            path: \db\changelog\change_sets\add_user_pass.sql
